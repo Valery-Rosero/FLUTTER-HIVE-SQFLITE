@@ -6,7 +6,6 @@ class DBHelper {
   static final DBHelper _instance = DBHelper._internal();
   factory DBHelper() => _instance;
   DBHelper._internal() {
-    // Inicializar el factory para FFI (necesario para Windows/Desktop)
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
   }
@@ -38,19 +37,16 @@ class DBHelper {
     );
   }
 
-  // Insertar nueva entrada
   Future<int> insertEntry(Map<String, dynamic> entry) async {
     final db = await database;
     return await db.insert('entries', entry);
   }
 
-  // Obtener todas las entradas
   Future<List<Map<String, dynamic>>> getEntries() async {
     final db = await database;
     return await db.query('entries', orderBy: "date DESC");
   }
 
-  // Buscar por palabra
   Future<List<Map<String, dynamic>>> searchEntries(String keyword) async {
     final db = await database;
     return await db.query(
@@ -60,13 +56,11 @@ class DBHelper {
     );
   }
 
-  // Eliminar entrada
   Future<int> deleteEntry(int id) async {
     final db = await database;
     return await db.delete('entries', where: "id = ?", whereArgs: [id]);
   }
 
-  // Cerrar la base de datos (opcional pero recomendado)
   Future<void> close() async {
     if (_database != null) {
       await _database!.close();

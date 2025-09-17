@@ -5,10 +5,8 @@ import 'entry_list_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Inicializar Hive
   await Hive.initFlutter();
 
-  // Abrir caja de configuraciones
   await Hive.openBox('settingsBox');
 
   runApp(const MyApp());
@@ -24,7 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      home: const EntryListPage(), // ← Lista principal del diario
+      home: const EntryListPage(), 
     );
   }
 }
