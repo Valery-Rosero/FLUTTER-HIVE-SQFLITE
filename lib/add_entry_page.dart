@@ -26,7 +26,7 @@ class _AddEntryPageState extends State<AddEntryPage> {
       "tags": _tagsController.text,
     });
 
-    Navigator.pop(context, true); // Regresa a la lista
+    Navigator.pop(context, true); 
   }
 
   @override
